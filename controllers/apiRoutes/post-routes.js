@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
       'post_url',
       'title',
       'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = productTag.product_id)'), 'productTag_count']
     ],
     include: [
       {
@@ -100,7 +100,7 @@ router.put('/upvote', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  Post.update(
+  Post.update(req.body
     {
       title: req.body.title
     },
